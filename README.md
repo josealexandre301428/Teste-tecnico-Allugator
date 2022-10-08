@@ -1,2 +1,43 @@
-# Teste-tecnico-Allugator
+
+# Teste técnico Allugator
+
 Primeira etapa do processo seletivo, com o objetivo de demosntrar minhas habilidades com as stacks que são utilizadas pela Allugator por meio de um desafio técnico.
+## Configurações iniciais
+
+1 - Clone o repositório
+ - Use o comando: git clone git@github.com:josealexandre301428/Teste-tecnico-Allugator.git
+ - Entre na pasta do repositório que você acabou de clonar:
+    - cd Teste-tecnico-Allugator
+2 - Instale as dependências
+ - Para isso, use o seguinte comando na raiz do projeto e separadamente dentro de cada pasta(Front e Back-end):
+     - npm install
+
+## Banco de dados e Sequelize
+
+Para o banco de dados, utilizaremos o ORM Sequelize, que fará interface com o MySQL.
+
+
+- O [Diagrama de ER](./assets/readme/eer.png) também pode ajudar a "visualizar" o banco de dados;
+- Respeite a estrutura do banco de dados, ou seja, sua implementação não deve adicionar ou remover tabelas, campos ou relacionamentos e sua API deve estar preparada para aproveitar essa estrutura por completo.
+## Scripts relevantes do package.json
+
+São os scripts da raiz do projeto (./package.json) e não das aplicações individuais ./front-end/package.json e ./back-end/package.json:
+
+ - `start`: Limpa as portas 3000 e 3001 e simula a inicialização no avaliador. Também prepara o campo rodando o Sequelize para restaurar o banco de dados de testes (final -test) e sobe a aplicação com pm2 em modo fork (uma instância para cada aplicação). Nesse modo, as alterações não são assistidas;
+
+     - uso (na raiz do projeto): npm start
+## Feedback
+
+Se você tiver algum feedback, por favor nos deixe saber por meio de jasspfilho@gmail.com
+
+
+## Stack utilizada
+
+ - **Front-end:** React, Bootstrap, reactStrap, axios, eslint, StyleLint.
+ - **Back-end:** Node, Express, JWT, cors, chai, mocha.
+
+
+## Autores
+
+- [@josealexandre301428](https://www.github.com/josealexandre301428)
+
