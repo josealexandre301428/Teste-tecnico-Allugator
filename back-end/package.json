@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
-    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "test": "mocha src/tests/**/*$NAME*.test.js --exit"
   },
   "dependencies": {
     "@hapi/boom": "9.1.4",
@@ -31,7 +32,7 @@
   },
   "devDependencies": {
     "chai": "4.3.6",
-    "chai-http": "4.3.0",
+    "chai-http": "^4.3.0",
     "eslint-config-trybe-backend": "1.0.4",
     "mocha": "9.2.2",
     "nodemon": "2.0.15",

@@ -14,7 +14,7 @@ const schema = Joi.object({
 const loginService = {
   async login(body) {
     const { error } = schema.validate(body);
-    if (error) throw new ValidateError(400, error.message);
+    if (error) throw new ValidateError(401, error.message);
 
     const { email, password } = body;
 
@@ -22,16 +22,16 @@ const loginService = {
       where: { email }, raw: true,
     });
 
-    if (!dataValues) throw new ValidateError(404, 'Incorrect email or password');
+    if (!dataValues) throw new ValidateError(400, 'Incorrect email or password');
 
     const JwtDecode = jwt_decode(dataValues.password);
-    console.log(JwtDecode.password);
 
     if (JwtDecode.password !== password) {
       throw new ValidateError(401, 'Incorrect email or password');
     }
 
-    const { name, token } = dataValues;
+    const token = dataValues.password;
+    const { name } = dataValues;
 
     return { name, email, token };
   },
