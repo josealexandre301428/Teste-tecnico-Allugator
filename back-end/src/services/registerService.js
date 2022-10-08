@@ -15,7 +15,7 @@ const schema = Joi.object({
 const registerService = {
   async register(body) {
     const { error } = schema.validate(body);
-    if (error) throw new ValidateError(400, error.message);
+    if (error) throw new ValidateError(401, error.message);
 
     const { name, email, password } = body;
     console.log(body);
@@ -23,10 +23,10 @@ const registerService = {
     const dataValues = await models.User.findOne({
       where: { name, email },
     });
-    if (dataValues) throw new ValidateError(409, 'User already exists');
+    if (dataValues) throw new ValidateError(400, 'User already exists');
 
     const jwtPass = setToken({ name, email, password })
-    const newUser = { name, email, jwtPass };
+    const newUser = { name, email, password: jwtPass };
     const createUser = await models.User.create(newUser);
     return createUser;
   },

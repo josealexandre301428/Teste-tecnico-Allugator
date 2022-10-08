@@ -1,4 +1,4 @@
-const registerService = require('../services/loginService');
+const registerService = require('../services/registerService');
 
 const registerController = {
 
