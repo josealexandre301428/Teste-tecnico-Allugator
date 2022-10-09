@@ -46,7 +46,14 @@
 }
 
 .imgSize {
-  max-width: 10px;
+  max-height: 380px;
+}
+
+.navItem:hover {
+  background-color: #106a47;
+  border-radius: 5px;
+  font-size: large;
+  transition: 100ms;
 }
 
 .container {
