@@ -4,7 +4,19 @@
   "description": "teste tecnico allugator",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
+    "pm2": "./node_modules/.bin/pm2",
+    "jest": "./node_modules/.bin/jest",
+    "start": "./scripts/prepare-for-test.sh",
+    "stop": "(pm2 stop all && pm2 delete all) | grep 'PM2'",
+    "dev": "./scripts/prepare-for-dev.sh",
+    "dev:prestart": "./scripts/prestart-dev.sh",
+    "db:reset": "./scripts/reset-db-dev.sh",
+    "db:reset:debug": "./scripts/reset-db-dev-debug.sh",
+    "pretest": "npm start"
+=======
     "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> main
   },
   "repository": {
     "type": "git",
