@@ -25,6 +25,7 @@ São os scripts da raiz do projeto (./package.json) e não das aplicações indi
 
  - `start`: Limpa as portas 3000 e 3001 e simula a inicialização no avaliador. Também prepara o campo rodando o Sequelize para restaurar o banco de dados de testes (final -test) e sobe a aplicação com pm2 em modo fork (uma instância para cada aplicação). Nesse modo, as alterações não são assistidas;
 
+<<<<<<< HEAD
      - uso (na raiz do projeto): `npm start`
 - `stop`: Para e deleta as aplicações rodando no `pm2`;
 
@@ -38,6 +39,9 @@ São os scripts da raiz do projeto (./package.json) e não das aplicações indi
 - `db:reset`: Roda os scripts do Sequelize restaurando o banco de dados de desenvolvimento (final -dev). Utilize esse script caso ocorra algum problema no seu banco local;
 
     - uso (na raiz do projeto): `npm run db:reset`
+=======
+     - uso (na raiz do projeto): npm start
+>>>>>>> main
 ## Feedback
 
 Se você tiver algum feedback, por favor nos deixe saber por meio de jasspfilho@gmail.com
