@@ -1,71 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
+import { Input, Card } from 'reactstrap';
 import api from '../../services/Api';
 import NavBar from './components/NavBar';
+import makeProducts from '../../services/handlerProduct';
 
 export default function CustomProducts() {
+  const [search, setSearch] = useState('');
+  const [searchValid, setSearchValid] = useState(false);
+  const [productValid, setProductValid] = useState(false);
   const [products, setProducts] = useState([]);
-  const [showError, setError] = useState(false);
+  const [productFilter, setProductFilter] = useState([]);
   const [valueState, setValue] = useState({});
 
-  function makeProducts(product, index) {
-    const { name, id, urlImage, price } = product;
-    return (
-      <Card
-        key={ index }
-        style={ {
-          width: '18rem',
-          marginTop: '6rem',
-          marginBottom: '1rem',
-          marginLeft: '1rem',
-          marginRight: '1rem',
-        } }
-      >
-        <img
-          alt={ name }
-          src={ urlImage }
-          className="img-responsive imgSize img-fluid img-thumbnail"
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
-        />
-        <CardBody className="bodyCard text-center">
-          <CardTitle
-            tag="h5"
-            data-testid={ `customer_products__element-card-title-${id}` }
-          >
-            { name }
-          </CardTitle>
-          <CardText
-            className="text-center"
-          >
-            { ` a partir de R$ ${price} por ano` }
-          </CardText>
-          <div className="cardButton">
-            <Button
-              color="success"
-              className="w-100 p-3"
-              name="sobre"
-            >
-              Sobre
-            </Button>
-          </div>
-        </CardBody>
-      </Card>
-    );
-  }
+  const handleSearch = (value, product) => {
+    setSearch(value);
+    const productsFilter = product.filter((item) => item.name
+      .toLowerCase().includes(value.toLowerCase()));
+    if (value === '') {
+      setProductValid(true);
+      setSearchValid(false);
+    } else {
+      setProductValid(false);
+      setSearchValid(true);
+    }
+    setProductFilter(productsFilter);
+  };
 
   const handleFetch = async () => {
     try {
       const product = await api.get('/products');
-      console.log(product);
       setProducts(product.data);
+      setSearchValid(false);
+      setProductValid(true);
       const nameMap = product.data.map(({ name, id, price }) => ({ name, id, price }))
         .reduce((acc, curr) => {
           acc[curr.name] = {
             name: curr.name,
             id: curr.id,
             price: curr.price,
-            quantity: 0,
-            subTotal: 0,
           };
           return acc;
         }, {});
@@ -86,10 +58,19 @@ export default function CustomProducts() {
   return (
     <main>
       <NavBar />
+      <Card className="Card text-center  bg-light border">
+        <Input
+          className="mb-3"
+          placeholder="pesquise"
+          value={ search }
+          onChange={ ({ target: { value } }) => handleSearch(value, products) }
+        />
+      </Card>
       <div className="cardGroup">
-        { showError
-          ? null
-          : products && products.map((product, index) => makeProducts(product, index)) }
+        { productValid ? products
+          .map((product, index) => makeProducts(product, index)) : null }
+        { searchValid ? productFilter
+          .map((product, index) => makeProducts(product, index)) : null }
       </div>
     </main>
   );

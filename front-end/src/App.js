@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter basename={ process.env.PUBLIC_URL }>
       <main className="main">
         <Routes>
-          <Route exact path="/" element={ <Navigate to="/login" /> } />
+          <Route exact path="/" element={ <Navigate to="/products" /> } />
           <Route exact path="/login" element={ <LoginForm /> } />
           <Route exact path="/register" element={ <RegisterForm /> } />
           <Route exact path="/products" element={ <Products /> } />
