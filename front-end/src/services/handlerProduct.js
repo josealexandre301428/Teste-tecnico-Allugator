@@ -1,4 +1,4 @@
-import { Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardText, Button, NavLink } from 'reactstrap';
 
 export default function makeProducts(product, index) {
   const { name, id, urlImage, price } = product;
@@ -7,7 +7,6 @@ export default function makeProducts(product, index) {
       key={ index }
       style={ {
         width: '18rem',
-        marginTop: '6rem',
         marginBottom: '1rem',
         marginLeft: '1rem',
         marginRight: '1rem',
@@ -32,13 +31,15 @@ export default function makeProducts(product, index) {
           { ` a partir de R$ ${price} por ano` }
         </CardText>
         <div className="cardButton">
-          <Button
-            color="success"
-            className="w-100 p-3"
-            name="sobre"
-          >
-            Sobre
-          </Button>
+          <NavLink href="/sobre">
+            <Button
+              color="success"
+              className="w-100 p-3"
+              name="sobre"
+            >
+              Sobre
+            </Button>
+          </NavLink>
         </div>
       </CardBody>
     </Card>

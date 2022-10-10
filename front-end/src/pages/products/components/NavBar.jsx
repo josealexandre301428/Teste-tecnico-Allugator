@@ -13,14 +13,14 @@ export default function NavBar() {
   const redirect = useNavigate();
   const handleLogOut = () => {
     localStorage.removeItem('user');
-    redirect('/login');
+    redirect('/products');
   };
 
   const logOut = (
     <NavItem className="navItem">
       <NavLink
         className="text-danger hoverable"
-        href="/"
+        href="/products"
         onClick={ handleLogOut }
       >
         Sair
@@ -56,12 +56,12 @@ export default function NavBar() {
   });
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark bg-success static-top"
+      className="container bg-success static-top"
       style={ {
         marginBottom: '1rem',
       } }
     >
-      <Nav className=" container navbar navbar-expand-lg">
+      <Nav className=" container-fluid d-flex justify-content-center align-items-center">
         <NavItem className="navItem">
           <NavLink
             className="text-white"
