@@ -18,8 +18,8 @@ export default function CarShop() {
   const toggle = () => setModal(!modal);
   const redirect = useNavigate();
 
-  const productsStorage = JSON.parse(localStorage.getItem('cart'));
   const getProductsStorage = () => {
+    const productsStorage = JSON.parse(localStorage.getItem('cart'));
     const arrayProducts = Object.values(productsStorage);
     setProducts(arrayProducts);
   };
