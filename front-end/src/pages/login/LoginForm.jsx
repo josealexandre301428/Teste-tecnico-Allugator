@@ -39,12 +39,12 @@ export default function LoginForm() {
 
   return (
     <main
-      className="loginMain row col-xs-12 col-sm-12 col-md-12 col-lg-12"
+      className="loginMain container row col-xs-12 col-sm-12 col-md-12 col-lg-12"
     >
       <div className="titleDiv">
         <h1 className="title">Teste Técnico Allugator</h1>
       </div>
-      <Container className="container text-center  bg-light border">
+      <Container className=" text-center ">
         <Form>
           <FormGroup>
             <Label for="email">

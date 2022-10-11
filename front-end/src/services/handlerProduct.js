@@ -1,5 +1,13 @@
 import { Card, CardBody, CardTitle, CardText, Button, NavLink } from 'reactstrap';
 
+function toCart(prod) {
+  const { name, id, urlImage, price } = prod;
+  const carrinho = JSON.parse(localStorage.getItem('cart'));
+  return localStorage.setItem('cart', JSON.stringify({ ...carrinho,
+    [name]:
+      { name, id, price, urlImage } }));
+}
+
 export default function makeProducts(product, index) {
   const { name, id, urlImage, price } = product;
   return (
@@ -16,12 +24,10 @@ export default function makeProducts(product, index) {
         alt={ name }
         src={ urlImage }
         className="img-responsive imgSize img-fluid img-thumbnail"
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
       <CardBody className="bodyCard text-center">
         <CardTitle
           tag="h5"
-          data-testid={ `customer_products__element-card-title-${id}` }
         >
           { name }
         </CardTitle>
@@ -30,11 +36,19 @@ export default function makeProducts(product, index) {
         >
           { ` a partir de R$ ${price} por ano` }
         </CardText>
-        <div className="cardButton">
-          <NavLink href="/sobre">
+        <div className="cardButton d-grid gap-3">
+          <Button
+            color="success"
+            className="p-2 flex-fill"
+            name="sobre"
+            onClick={ () => toCart(product) }
+          >
+            Adicionar ao Carrinho
+          </Button>
+          <NavLink href={ `/about/${id}` }>
             <Button
-              color="success"
-              className="w-100 p-3"
+              color="secondary"
+              className="p-2 flex-fill"
               name="sobre"
             >
               Sobre

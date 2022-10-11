@@ -40,14 +40,6 @@ export default function CustomProducts() {
       break;
     }
   };
-
-  const handleSearch = (value, product) => {
-    setSearch(value);
-    const productsFilter = product.filter((item) => item.name
-      .toLowerCase().includes(value.toLowerCase()));
-    setProducts(productsFilter);
-  };
-
   const handleFetch = async () => {
     try {
       const product = await api.get('/products');
@@ -65,6 +57,14 @@ export default function CustomProducts() {
     } catch (error) {
       setError(true);
     }
+  };
+
+  const handleSearch = (value, product) => {
+    setSearch(value);
+    if (value.length === 0) handleFetch();
+    const productsFilter = product.filter((item) => item.name.toLowerCase()
+      .includes(value.toLowerCase()));
+    setProducts(productsFilter);
   };
 
   useEffect(() => {

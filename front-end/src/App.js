@@ -5,6 +5,7 @@ import NotFound from './pages/notFound';
 import Products from './pages/products/Products';
 import LoginForm from './pages/login/LoginForm';
 import RegisterForm from './pages/registro/RegisterForm';
+import About from './pages/about/About';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/login" element={ <LoginForm /> } />
           <Route exact path="/register" element={ <RegisterForm /> } />
           <Route exact path="/products" element={ <Products /> } />
+          <Route exact path="/About/:id" element={ <About /> } />
           <Route exact path="*" element={ <NotFound /> } />
         </Routes>
       </main>

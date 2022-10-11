@@ -6,6 +6,7 @@ import {
   NavItem,
   Button,
 } from 'reactstrap';
+import CarShop from './CarShop';
 
 export default function NavBar() {
   const [haveUser, setUser] = useState(false);
@@ -31,7 +32,7 @@ export default function NavBar() {
   const logIn = (
     <>
       <Button
-        className="text-white hoverable"
+        className="text-white navItem"
         color="success"
         onClick={ () => redirect('/login') }
         type="button"
@@ -39,7 +40,7 @@ export default function NavBar() {
         Login
       </Button>
       <Button
-        className="text-white hoverable"
+        className="text-white navItem"
         color="success"
         onClick={ () => { redirect('/register'); } }
         type="button"
@@ -56,7 +57,7 @@ export default function NavBar() {
   });
   return (
     <nav
-      className="container bg-success static-top"
+      className="container d-flex bg-success static-top"
       style={ {
         marginBottom: '1rem',
       } }
@@ -72,13 +73,16 @@ export default function NavBar() {
         </NavItem>
         <NavItem className="navItem">
           <NavLink
-            className="text-white hoverable"
+            className="text-white"
             href="/signatures"
           >
             Minhas Assinaturas
           </NavLink>
         </NavItem>
         { haveUser ? logOut : logIn }
+        <NavItem>
+          <CarShop />
+        </NavItem>
       </Nav>
     </nav>
   );
