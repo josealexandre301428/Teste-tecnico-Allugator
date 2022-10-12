@@ -43,13 +43,18 @@ export default function CustomProducts() {
   const handleFetch = async () => {
     try {
       const product = await api.get('/products');
+      console.log(product.data);
       setProducts(product.data);
-      const nameMap = product.data.map(({ name, id, price }) => ({ name, id, price }))
+      const nameMap = product.data
+        .map(({ name, id, price, urlImage, infoProduct }) => (
+          { name, id, price, urlImage, infoProduct }))
         .reduce((acc, curr) => {
           acc[curr.name] = {
             name: curr.name,
             id: curr.id,
             price: curr.price,
+            infoProduct: curr.infoProduct,
+            urlImage: curr.urlImage,
           };
           return acc;
         }, {});

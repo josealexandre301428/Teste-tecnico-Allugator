@@ -29,7 +29,7 @@ const SignedProduct = (sequelize, DataTypes) => {
 
     models.Signature.belongsToMany(models.Product, {
       through: SignedProduct,
-      foreignKey: 'ssignatureId',
+      foreignKey: 'signatureId',
       otherKey: 'productId',
       as: 'products',
     });
