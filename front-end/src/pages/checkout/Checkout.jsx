@@ -9,24 +9,34 @@ export default function Checkout() {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
 
+  const getCartStorage = (user) => {
+    const cartItems = JSON.parse(localStorage.getItem('cart'));
+    console.log(cartItems);
+    return {
+      userId: user.id,
+      totalPrice: total,
+      cartItems,
+    };
+  };
+
   async function handleClick() {
-    const userToken = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     const config = {
       headers: {
-        Authorization: userToken.token,
+        Authorization: user.token,
       },
     };
-    const sale = setSaleStorage();
+    const sign = getCartStorage(user);
     try {
-      const product = await api.post('/customer/orders', sale, config);
-      redirect(`/customer/orders/${product.data.id}`);
+      const requests = await api.post('/signature/newSig', sign, config);
+      console.log(requests);
+      redirect('/signatures');
     } catch (error) {
       throw new Error();
     }
   }
 
   const totalPrice = (prod) => {
-    console.log(prod);
     let totalValue = 0;
     prod.forEach((value) => {
       totalValue += Number(value.price);
@@ -38,13 +48,13 @@ export default function Checkout() {
   const getProductsStorage = () => {
     const productsStorage = JSON.parse(localStorage.getItem('cart'));
     const arrayProducts = Object.values(productsStorage);
-    setProducts(arrayProducts);
+    totalPrice(arrayProducts);
+    return setProducts(arrayProducts);
   };
 
   useEffect(() => {
     const usuario = JSON.parse(localStorage.getItem('user'));
     getProductsStorage();
-    totalPrice(products);
     if (!usuario) setUser(false);
     if (usuario) setUser(true);
   }, []);
@@ -100,7 +110,11 @@ export default function Checkout() {
           </Table>
           <Container>
             <h5>{`Total a pagar R$ ${total}`}</h5>
-            <Button color="success">
+            <Button
+              type="button"
+              color="success"
+              onClick={ () => handleClick() }
+            >
               Finalizar Assinatura
             </Button>
           </Container>

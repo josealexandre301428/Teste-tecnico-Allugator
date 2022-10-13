@@ -43,7 +43,6 @@ export default function CustomProducts() {
   const handleFetch = async () => {
     try {
       const product = await api.get('/products');
-      console.log(product.data);
       setProducts(product.data);
       const nameMap = product.data
         .map(({ name, id, price, urlImage, infoProduct }) => (

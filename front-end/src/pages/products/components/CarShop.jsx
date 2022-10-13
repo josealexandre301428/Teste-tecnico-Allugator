@@ -21,6 +21,7 @@ export default function CarShop() {
   const getProductsStorage = () => {
     const productsStorage = JSON.parse(localStorage.getItem('cart'));
     const arrayProducts = Object.values(productsStorage);
+    console.log(arrayProducts);
     setProducts(arrayProducts);
   };
 
@@ -34,6 +35,8 @@ export default function CarShop() {
   const handleClick = () => redirect('/checkout');
 
   useEffect(() => {
+    const hasCart = localStorage.getItem('cart');
+    if (!hasCart) localStorage.setItem('cart', JSON.stringify([]));
     getProductsStorage();
   }, [localStorage.getItem('cart')]);
 

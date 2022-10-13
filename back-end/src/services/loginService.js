@@ -29,11 +29,11 @@ const loginService = {
     if (JwtDecode.password !== password) {
       throw new ValidateError(401, 'Incorrect email or password');
     }
-
+    console.log(dataValues);
     const token = dataValues.password;
-    const { name } = dataValues;
+    const { name, id } = dataValues;
 
-    return { name, email, token };
+    return { id, name, email, token };
   },
 
   /* async getByRole() {

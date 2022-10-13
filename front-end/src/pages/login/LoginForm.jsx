@@ -24,6 +24,7 @@ export default function LoginForm() {
   const handleSubmit = async () => {
     try {
       const login = await api.post('/login', { email, password });
+      console.log(login);
       setUser(login);
       localStorage.setItem('user', JSON.stringify(login.data));
       redirect('/products');
