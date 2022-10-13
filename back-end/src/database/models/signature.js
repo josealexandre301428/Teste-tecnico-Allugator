@@ -21,7 +21,7 @@ const signature = (sequelize, DataTypes) => {
     },
   }, {
     timestamps: false,
-    tableName: 'signature',
+    tableName: 'signatures',
   });
 
   signature.associate = (models) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Container, Table } from 'reactstrap';
 import api from '../../services/Api';
 import NavBar from '../products/components/NavBar';
@@ -8,28 +8,17 @@ export default function Checkout() {
   const [haveUser, setUser] = useState(false);
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
-
-  const getCartStorage = (user) => {
-    const cartItems = JSON.parse(localStorage.getItem('cart'));
-    console.log(cartItems);
-    return {
-      userId: user.id,
-      totalPrice: total,
-      cartItems,
-    };
-  };
-
+  const redirect = useNavigate();
   async function handleClick() {
     const user = JSON.parse(localStorage.getItem('user'));
-    const config = {
-      headers: {
-        Authorization: user.token,
-      },
-    };
-    const sign = getCartStorage(user);
+    const cartItems = Object.values(JSON.parse(localStorage.getItem('cart')));
+    console.log(user.id);
     try {
-      const requests = await api.post('/signature/newSig', sign, config);
-      console.log(requests);
+      await api.post('/signature/newSig', {
+        userId: user.id,
+        totalPrice: total,
+        cartItems,
+      });
       redirect('/signatures');
     } catch (error) {
       throw new Error();

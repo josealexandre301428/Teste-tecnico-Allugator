@@ -3,6 +3,7 @@ const signatureController = require('../controller/signatureController');
 
 const signatureRouter = Router();
 
-signatureRouter.post('/newSig', signatureController.addSig)
+signatureRouter.get('/', signatureController.getByUser);
+signatureRouter.post('/newSig', signatureController.addSig);
 
 module.exports = signatureRouter;

@@ -1,9 +1,13 @@
 const db = require('../database/models');
 
+const include = [
+  { model: db.Product, as: 'products', through: { attributes: ['quantity'] } },
+]
+
 
 const signatureService = {
-  async getById(id) {
-   const result =  await db.Signature.findOne({ where: { userId: id } });
+  async getByUser(userId) {
+   const result =  await db.Signature.findAll({ where: userId });
    return result;
   },
 
@@ -21,7 +25,7 @@ const signatureService = {
           productId: product.id,
         })),
     );
-    return saleId;
+    return signId;
 
   }
 }

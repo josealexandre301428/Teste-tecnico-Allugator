@@ -2,9 +2,10 @@ const signatureService = require('../services/signatureService');
 
 const signatureController = {
 
-  async getAll(_req, res) {
+  async getByUser(req, res) {
+    const  { id } = req.body;
     try {
-      const response = await signatureService.getAll();
+      const response = await signatureService.getByUser(id);
 
       return res.status(200).json(response);
     } catch (error) {
