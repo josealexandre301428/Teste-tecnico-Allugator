@@ -1,8 +1,12 @@
 const db = require('../database/models');
 
+const include = [
+  { model: db.Infos, as: 'infoProduct' },
+];
+
 const productService = {
   async getAll() {
-   const result =  await db.Product.findAll({ raw: true });
+   const result =  await db.Product.findAll({ include });
    return result;
   },
 

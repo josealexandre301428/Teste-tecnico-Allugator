@@ -2,49 +2,58 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('signatures', {
+    await queryInterface.createTable('infos', {
       id: {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
         type: Sequelize.INTEGER,
       },
-      user_id: {
+      productId: {
         allowNull: false,
-        field: 'user_id',
+        field: 'product_id',
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: 'users',
+            tableName: 'products',
           },
           key: 'id',
         },
       },
-      total_price: {
-        allowNull: false,
-        type: Sequelize.DECIMAL(9, 3),
-      },
-      delivery_address: {
+      marca: {
         allowNull: false,
         type: Sequelize.STRING,
+        field: `marca`,
       },
-      delivery_number: {
+      armazenamento: {
         allowNull: false,
         type: Sequelize.STRING,
+        field: `armazenamento`,
       },
-      document: {
+      tela: {
         allowNull: false,
         type: Sequelize.STRING,
+        field: `tela`,
       },
-      signature_date: {
+      cameraFrontal: {
+        type: Sequelize.STRING,
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
+        field: `camera_frontal`,
+      },
+      cameraTraseira: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        field: `camera_traseira`,
+      },
+      processador: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        field: `processador`,
       },
     });
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.dropTable('signatures');
+    await queryInterface.dropTable('infos');
   }
 };

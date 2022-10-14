@@ -1,9 +1,9 @@
 const Product = (sequelize, DataTypes) => {
   const Product = sequelize.define('Product', {
     id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
       autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
     },
     name: {
       type: DataTypes.STRING,
@@ -22,6 +22,12 @@ const Product = (sequelize, DataTypes) => {
     timestamps: false,
     tableName: 'products',
   });
+
+  Product.associate = (models) => {
+    Product.hasOne(models.Infos, {
+      foreignKey: 'id', as: 'infoProduct'
+    });
+  }
 
   return Product;
 };
