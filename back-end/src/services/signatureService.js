@@ -1,7 +1,21 @@
 const db = require('../database/models');
+const Joi = require('joi');
+const ValidateError = require('../middlewares/ValidateError');
 const include = [
   { model: db.Product, as: 'products', through: { attributes: ['quantity'] } },
-]
+  ]
+
+  const schema = Joi.object({
+    userId: Joi.number().required(),
+    totalPrice: Joi.number().required(),
+    deliveryAddress: Joi.string().required(),
+    deliveryNumber:  Joi.number().required(),
+    document: Joi.string().required().min(11),
+    cartItems: Joi.array().required(),
+  }).messages({
+    'string.empty': 'All fields must be filled',
+    'any.required': 'All fields must be filled',
+  });
 
 const signatureService = {
   async delete(params) {
@@ -17,6 +31,9 @@ const signatureService = {
   },
 
   async addSig(data) {
+    const { error } = schema.validate(data);
+    if (error) throw new ValidateError(400, error.message);
+
     const { cartItems, ...sign } = data;
     console.log(cartItems);
     const signId = await db.Signature.create(

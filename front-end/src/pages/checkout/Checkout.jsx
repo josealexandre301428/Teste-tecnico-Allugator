@@ -1,31 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Container, Table } from 'reactstrap';
-import api from '../../services/Api';
 import NavBar from '../products/components/NavBar';
+import FormCheckout from './FormCheckout';
 
 export default function Checkout() {
   const [haveUser, setUser] = useState(false);
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
-  const redirect = useNavigate();
-
-  async function handleClick() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const cartItems = Object.values(JSON.parse(localStorage.getItem('cart')));
-    console.log(user.id);
-    try {
-      await api.post('/signature/newSig', {
-        userId: user.id,
-        totalPrice: total,
-        cartItems,
-      });
-      redirect('/signatures');
-      localStorage.setItem('cart', []);
-    } catch (error) {
-      throw new Error();
-    }
-  }
 
   const totalPrice = (prod) => {
     let totalValue = 0;
@@ -101,14 +83,8 @@ export default function Checkout() {
           </Table>
           <Container>
             <h5>{`Total a pagar R$ ${total}`}</h5>
-            <Button
-              type="button"
-              color="success"
-              onClick={ () => handleClick() }
-            >
-              Finalizar Assinatura
-            </Button>
           </Container>
+          <FormCheckout />
         </Container>
       ) : (
         <Container className="text-center bg-secondary p-2 text-dark bg-opacity-75">

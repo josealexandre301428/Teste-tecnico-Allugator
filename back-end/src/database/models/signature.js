@@ -14,6 +14,21 @@ const signature = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(9, 3),
       field: 'total_price'
     },
+    deliveryAddress: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      field: 'delivery_address'
+    },
+    deliveryNumber: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      field: 'delivery_number'
+    },
+    document: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      field: 'document'
+    },
     signatureDate: {
       allowNull: false,
       type: DataTypes.DATE,

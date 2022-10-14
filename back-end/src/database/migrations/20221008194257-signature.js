@@ -24,6 +24,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL(9, 3),
       },
+      delivery_address: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      delivery_number: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
+      document: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       signature_date: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -4,6 +4,9 @@ module.exports = {
       {
         user_id: 1,
         total_price: 3.197,
+        delivery_address: 'Rua do lazer, Belo Horizonte - MG',
+        delivery_number: 123,
+        document: 'mg12345678',
         signature_date: new Date(),
       },
     ], {});
