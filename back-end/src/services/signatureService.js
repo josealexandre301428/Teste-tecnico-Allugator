@@ -1,13 +1,18 @@
 const db = require('../database/models');
-
 const include = [
   { model: db.Product, as: 'products', through: { attributes: ['quantity'] } },
 ]
 
-
 const signatureService = {
+  async delete(params) {
+    const { id } = params;
+    await db.SignedProduct.destroy({ where: { signatureId: id } });
+    await db.Signature.destroy({ where: { id } });
+    return 'ok';
+   },
+
   async getByUser(userId) {
-   const result =  await db.Signature.findAll({ where: userId });
+   const result =  await db.Signature.findAll({ where: userId, include });
    return result;
   },
 

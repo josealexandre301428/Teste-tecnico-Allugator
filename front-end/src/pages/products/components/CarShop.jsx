@@ -21,7 +21,6 @@ export default function CarShop() {
   const getProductsStorage = () => {
     const productsStorage = JSON.parse(localStorage.getItem('cart'));
     const arrayProducts = Object.values(productsStorage);
-    console.log(arrayProducts);
     setProducts(arrayProducts);
   };
 

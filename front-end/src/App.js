@@ -7,6 +7,7 @@ import LoginForm from './pages/login/LoginForm';
 import RegisterForm from './pages/registro/RegisterForm';
 import Checkout from './pages/checkout/Checkout';
 import About from './pages/about/About';
+import Signatures from './pages/signatures/signatures';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/register" element={ <RegisterForm /> } />
           <Route exact path="/products" element={ <Products /> } />
           <Route exact path="/checkout" element={ <Checkout /> } />
+          <Route exact path="/signatures" element={ <Signatures /> } />
           <Route exact path="/about/:id" element={ <About /> } />
           <Route exact path="*" element={ <NotFound /> } />
         </Routes>

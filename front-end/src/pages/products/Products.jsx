@@ -59,7 +59,7 @@ export default function CustomProducts() {
         }, {});
       setValue(nameMap);
     } catch (error) {
-      setError(true);
+      throw new Error();
     }
   };
 

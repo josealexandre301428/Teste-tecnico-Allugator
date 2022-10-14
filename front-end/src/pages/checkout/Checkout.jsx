@@ -9,6 +9,7 @@ export default function Checkout() {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const redirect = useNavigate();
+
   async function handleClick() {
     const user = JSON.parse(localStorage.getItem('user'));
     const cartItems = Object.values(JSON.parse(localStorage.getItem('cart')));
@@ -20,6 +21,7 @@ export default function Checkout() {
         cartItems,
       });
       redirect('/signatures');
+      localStorage.setItem('cart', []);
     } catch (error) {
       throw new Error();
     }
