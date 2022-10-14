@@ -1,7 +1,7 @@
 const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 const MIN = 6;
 
-const validateFields = (name, email, password) => {
+export const validateFields = (name, email, password) => {
   const MIN_NAME = 12;
 
   if (name.length < MIN_NAME) return true;
@@ -14,4 +14,10 @@ export const validateLogin = (email, password) => {
   if (password.length < MIN) return true;
 };
 
-export default validateFields;
+export const validateCheckout = (endereco, numero, documento) => {
+  const MIN_NAME = 10;
+
+  if (endereco.length < MIN) return true;
+  if (numero.length === 0) return true;
+  if (documento.length <= MIN_NAME) return true;
+};

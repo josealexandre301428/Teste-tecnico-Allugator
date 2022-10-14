@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form, FormGroup, Input, Label, Button, Alert, Container } from 'reactstrap';
 import UserContext from '../../context/user/context';
 import api from '../../services/Api';
-import validateFields from '../../services/validateLogin';
+import { validateFields } from '../../services/validateLogin';
 
 function RegisterForm() {
   const { setUser } = useContext(UserContext);

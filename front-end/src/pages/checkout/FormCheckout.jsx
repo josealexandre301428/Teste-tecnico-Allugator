@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input, Button, Form, Label, FormGroup, Container } from 'reactstrap';
 import api from '../../services/Api';
+import { validateCheckout } from '../../services/validateLogin';
 
 export default function FormCheckout() {
   const redirect = useNavigate();
@@ -22,7 +23,7 @@ export default function FormCheckout() {
       setNumber(value);
       console.log(numero);
       break;
-    case 'documento':
+    case 'identidade':
       setId(value);
       console.log(value);
       break;
@@ -82,8 +83,8 @@ export default function FormCheckout() {
             Documento
             <Input
               required
-              type="number"
-              name="numero"
+              type="text"
+              name="identidade"
               onChange={ (e) => handleInput(e.target) }
             />
           </Label>
@@ -91,6 +92,7 @@ export default function FormCheckout() {
       </Form>
       <Container>
         <Button
+          disabled={ validateCheckout(endereco, numero, identidade) }
           type="button"
           color="success"
           onClick={ () => handleClick() }
